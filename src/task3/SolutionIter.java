@@ -17,7 +17,7 @@ public class SolutionIter implements Iterable<Integer> {
     private List<Integer> integerList;
 
     public SolutionIter(Reader inp) {
-        this.integerList = getStringArray(inp);
+        this.integerList = getIntegerListFromReader(inp);
     }
 
     @Override
@@ -43,18 +43,18 @@ public class SolutionIter implements Iterable<Integer> {
         }
     }
 
-    List<Integer> getStringArray(Reader inp) {
-        StringBuilder result = new StringBuilder();
+    List<Integer> getIntegerListFromReader(Reader inp) {
+        StringBuilder stringBuilder = new StringBuilder();
         char[] buff = new char[1000];
         int val = -1;
         try {
             while ((val = inp.read(buff)) != -1) {
-                result.append(buff);
+                stringBuilder.append(buff);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String[] lines = result.toString().split("\\n");
+        String[] lines = stringBuilder.toString().split("\\n");
         List<Integer> numbers = new ArrayList<>();
         for (String line : lines) {
             try {
